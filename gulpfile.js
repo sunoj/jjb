@@ -4,6 +4,8 @@ var minify = require('gulp-minify');
 var cleanCss = require('gulp-clean-css');
 var optimizejs = require('gulp-optimize-js');
 var watch = require('gulp-watch');
+var replace = require('gulp-replace');
+var gutil = require('gulp-util');
 
 gulp.task('watch', function () {
   // watch many files
@@ -21,6 +23,7 @@ gulp.task('pack-js', function () {
     .pipe(optimizejs({
       sourceMap: true
     }))
+    .pipe(replace('{{version}}', gutil.env.version))
     .pipe(gulp.dest('build/static/js'));
   console.log("pack-js task done @", new Date())
     
@@ -47,6 +50,7 @@ gulp.task('move-file', [], function () {
   gulp.src([
     'background.html', 'manifest.json', 'popup.html', 'start.html', '*.html'
   ])
+    .pipe(replace('{{version}}', gutil.env.version))
     .pipe(gulp.dest('build'));
 });
 

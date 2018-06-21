@@ -30,7 +30,7 @@ let jobs = [
   {
     id: '5',
     src: 'https://plogin.m.jd.com/user/login.action?appid=100&kpkey=&returnurl=https%3A%2F%2Fvip.m.jd.com%2Fpage%2Fsignin',
-    title: '京豆签到',
+    title: '京东会员签到',
     mode: 'iframe',
     frequency: 'daily'
   },
@@ -69,6 +69,20 @@ let jobs = [
     mode: 'iframe',
     frequency: 'daily'
   },
+  {
+    id: '11',
+    src: 'https://bean.m.jd.com/',
+    title: '移动端京豆签到',
+    mode: 'iframe',
+    frequency: 'daily'
+  },
+  {
+    id: '12',
+    src: 'https://ljd.m.jd.com/countersign/index.action',
+    title: '双签礼包',
+    mode: 'iframe',
+    frequency: 'daily'
+  }
 ]
 
 // 会员礼包
@@ -130,6 +144,20 @@ try {
 } catch (error) {}
 
 
+// 将UA改为 Firfox 试图让京东不要求登录时输入验证码
+var Firfox_USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0';
+chrome.webRequest.onBeforeSendHeaders.addListener(
+  function (details) {
+    for (var i = 0; i < details.requestHeaders.length; ++i) {
+      if (details.requestHeaders[i].name === 'User-Agent') {
+        details.requestHeaders[i].value = Firfox_USER_AGENT;
+        break;
+      }
+    }
+    return { requestHeaders: details.requestHeaders };
+  }, { urls: ["*://*.jd.com/*"] }, ['blocking', 'requestHeaders']);
+
+
 chrome.alarms.onAlarm.addListener(function( alarm ) {
   switch(true){
     // 定时检查任务
@@ -141,6 +169,12 @@ chrome.alarms.onAlarm.addListener(function( alarm ) {
     case alarm.name.startsWith('runJob'):
       var jobId = alarm.name.split('_')[1]
       run(jobId)
+      break;
+    case alarm.name  == 'clearIframe':
+      // 销毁掉 
+      $("#iframe").remove();
+      let iframe = '<iframe id="iframe" width="1000 px" height="600 px" src=""></iframe>';
+      $('body').html(iframe);
       break;
     case alarm.name.startsWith('closeTab'):
       var tabId = alarm.name.split('_')[1]
@@ -221,6 +255,10 @@ function run(jobId, force) {
     console.log("运行", job.title)
     if (job.mode == 'iframe') {
       $("#iframe").attr('src', job.src)
+      // 2分钟后清理 iframe
+      chrome.alarms.create('clearIframe', {
+        delayInMinutes: 3
+      })
     } else {
       chrome.tabs.create({
         index: 1,
@@ -411,7 +449,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     case 'getAccount':
       let account = localStorage.getItem('jjb_account') ? JSON.parse(localStorage.getItem('jjb_account')) : null
       let loginFailed = localStorage.getItem('jjb_login-failed') ? JSON.parse(localStorage.getItem('jjb_login-failed')) : null
-      if (account && loginFailed && moment().isBefore(moment(loginFailed.time).add(1, 'hour'))) {
+      if (account && loginFailed && moment().isBefore(moment(loginFailed.time).add(2, 'hour'))) {
         loginFailed.displayTime = moment(loginFailed.time).locale('zh-cn').calendar()
         account.loginFailed = loginFailed
       }
@@ -431,7 +469,6 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
       openPriceProPhoneMenu()
       break;
     case 'loginFailed':
-      openLoginPage()
       localStorage.setItem('jjb_login-failed', JSON.stringify({
         errormsg: msg.content,
         time: new Date()

@@ -1,16 +1,16 @@
-body{
-    height: 600px;
-}
-
 select {
-    -moz-appearance: none;
     text-indent: 0.01px;
     text-overflow: '';
 }
 
 .popup{
-    width: 780px;
     height: 600px;
+    width: 800px;
+}
+
+.weui-cell_select{
+    height: 38px;
+    font-size: 15px;
 }
 
 .page__hd {
@@ -18,7 +18,7 @@ select {
 }
 
 .weui-dialog {
-    max-width: 380px;
+    max-width: 440px;
 }
 .page__desc{
     padding: 5px 10px;
@@ -49,9 +49,17 @@ select {
 
 .contents .weui-tab {
     background: #f5f5f5;
-    height: 562px;
+    height: 550px;
 }
 
+.weui-cell_switch {
+    height: 32px;
+    font-size: 16px;
+}
+
+.weui-tabbar__item{
+    padding: 8px 1px 0px;
+}
 
 .contents .weui-tab .weui-badge{
     margin-left: 5px;
@@ -75,7 +83,7 @@ select {
     margin-top: 10em;
 }
 
-.tips .payReward {
+.tips .switch-paymethod {
     padding: 0 0.62em;
     line-height: 1.8;
     margin-bottom: -7px;
@@ -93,6 +101,10 @@ select {
     display: none;
 }
 
+.messages-top{
+    margin-top: 8px;
+}
+
 .reload-icon {
     background: url(../image/reload.svg) no-repeat 1px 5px;
     width: 20px;
@@ -105,7 +117,7 @@ select {
 .orders, .messages{
     overflow-y: auto;
     overflow-x: hidden;
-    height: 528px;
+    height: 515px;
 }
 
 .messages{
@@ -192,7 +204,7 @@ select {
 }
 
 .segmented-control__item {
-    width: 49%;
+    width: 50%;
     display: inline-block;
     margin: 0;
     padding: 0;
@@ -203,6 +215,7 @@ select {
   position: absolute;
   visibility: hidden;
 }
+
 
 .segmented-control__label {
   display: block;
@@ -217,7 +230,7 @@ select {
   background: #fafafa;
 }
 
-.segmented-control__input:checked + .segmented-control__label {
+.checked .segmented-control__label{
   background: #1aad19;
   color: #fff;
 }
@@ -228,7 +241,7 @@ select {
 }
 
 .weui-navbar+.weui-tab__panel{
-    padding-top: 35px;
+    padding-top: 30px;
 }
 
 .weui-navbar__item{
@@ -251,12 +264,12 @@ select {
 .settings_box{
     overflow-y: auto;
     overflow-x: hidden;
-    height: 500px;
+    height: 515px;
 }
 
 .settings .page__desc{
     font-size: 12px;
-    height: 44px;
+    height: 35px;
 }
 
 .settings .weui-tab{
@@ -264,14 +277,18 @@ select {
 }
 
 .tips.page__hd {
-    height: 55px;
+    height: 45px;
     overflow: hidden;
     padding: 5px;
     background-image: linear-gradient(0deg, #dadada69, #fffde817);
 }
 
+.tips .page__desc{
+    padding: 2px 5px;
+}
+
 .bottom{
-    height: 38px;
+    height: 44px;
     font-size: 12px;
     position: relative;
 }
@@ -309,13 +326,17 @@ img.weui-tabbar__icon {
     height: 460px;
 }
 
-#feedbackDialags iframe{
+#jEventDialags iframe,
+#feedbackDialags iframe {
     width: 90%;
     height: 450px;
 }
 
+
 #feedbackResult,
+#wechatDialags,
 #feedbackDialags,
+#jEventDialags,
 #loginNotice,
 #listenAudio {
     display: none;
@@ -334,7 +355,7 @@ img.weui-tabbar__icon {
     display: flex;
     border-bottom: 1px solid #ebeef5;
     height: 33px;
-    padding-top: 4px;
+    padding-top: 0px;
     position: fixed;
     width: 54%;
     background: #fafafa;
@@ -497,7 +518,7 @@ button.Button.messages-tab.Button--plain:focus {
     padding: 10px;
 }
 
-.payReward i {
+.switch-paymethod i {
     font-size: 21px;
     margin-top: -4px;
 }

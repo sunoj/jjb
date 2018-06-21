@@ -3,7 +3,7 @@
   "name": "京价保 - 京东价保助手",
   "short_name": "京价保",
   "description": "京价保（京价宝）是自动为你申请京东价格保护，自动签到领京豆，自动领券的多功能京东助手",
-  "version": "1.15.6",
+  "version": "{{version}}",
   "background": {
     "page": "background.html",
     "persistent": true
