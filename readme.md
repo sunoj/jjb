@@ -47,7 +47,7 @@
 > yarn 
 
 * 开始开发
-> yarn dev -version=1.16.1
+> yarn dev --version=1.16.3 --browser=chrome
 
 `主要作用就是合并压缩代码，质疑代码和市场版本不一致，请先自行打包一下再对比`
 

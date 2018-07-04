@@ -89,21 +89,26 @@
         {{/if}}
       </div>
     </script>
-    <script>
-      window.addEventListener('message', function (event) {
-        var command = event.data.command;
-        var name = event.data.context.name || 'orders';
-        switch (command) {
-          case 'render':
-            var html = template('tpl-' + name, event.data.context)
-            event.source.postMessage({
-              name: name,
-              html: html
-            }, event.origin);
-            break;
-        }
-      });
-    </script>
+<!-- @if Browser='chrome' -->
+<script>
+  window.addEventListener('message', function (event) {
+    var command = event.data.command;
+    var name = event.data.context.name || 'orders';
+    switch (command) {
+      case 'render':
+        var html = template('tpl-' + name, event.data.context)
+        event.source.postMessage({
+          name: name,
+          html: html
+        }, event.origin);
+        break;
+    }
+  });
+</script>
+<!-- @endif -->
+<!-- @if Browser='firefox' -->
+<script data-code="d2luZG93LmFkZEV2ZW50TGlzdGVuZXIoJ21lc3NhZ2UnLCBmdW5jdGlvbiAoZXZlbnQpIHsKICAgICAgICB2YXIgY29tbWFuZCA9IGV2ZW50LmRhdGEuY29tbWFuZDsKICAgICAgICB2YXIgbmFtZSA9IChldmVudC5kYXRhLmNvbnRleHQubmFtZSB8fCAnb3JkZXJzJyk7CiAgICAgICAgc3dpdGNoIChjb21tYW5kKSB7CiAgICAgICAgICBjYXNlICdyZW5kZXInOgogICAgICAgICAgICB2YXIgaHRtbCA9IHRlbXBsYXRlKCd0cGwtJyArIG5hbWUsIGV2ZW50LmRhdGEuY29udGV4dCkKICAgICAgICAgICAgZXZlbnQuc291cmNlLnBvc3RNZXNzYWdlKHsKICAgICAgICAgICAgICBuYW1lOiBuYW1lLAogICAgICAgICAgICAgIGh0bWw6IGh0bWwKICAgICAgICAgICAgfSwgZXZlbnQub3JpZ2luKTsKICAgICAgICAgICAgYnJlYWs7CiAgICAgICAgfTsKICAgICAgfSk7">eval(atob(document.currentScript.dataset.code))</script>
+<!-- @endif -->
   </body>
 </html>
 

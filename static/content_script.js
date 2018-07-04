@@ -980,11 +980,18 @@ function CheckDom() {
   }
 }
 
+
+
 $( document ).ready(function() {
   console.log('京价保注入页面成功');
-  $('script').filter(function () { return this.src.length > 0 }).each(function () { this.src = this.src.replace("http://", "https://") })
   setTimeout( function(){
     console.log('京价保开始执行任务');
     CheckDom()
   }, 2000)
 });
+
+var nodeList = document.querySelectorAll('script');
+for (var i = 0; i < nodeList.length; ++i) {
+  var node = nodeList[i];
+  node.src = node.src.replace("http://", "https://")
+}

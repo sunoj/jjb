@@ -1,6 +1,7 @@
 select {
     text-indent: 0.01px;
     text-overflow: '';
+    -moz-appearance: none;
 }
 
 .popup{
@@ -195,6 +196,13 @@ select {
   padding: 0;
   background: #fff;
 }
+.segmented-control__item:first-child {
+    float: left;
+}
+.segmented-control__item:last-child {
+    float: right;
+}
+
 .segmented-control__item:first-child .segmented-control__label{
   border-radius: 4px 0 0 4px;
 }
@@ -204,7 +212,7 @@ select {
 }
 
 .segmented-control__item {
-    width: 50%;
+    width: 49.5%;
     display: inline-block;
     margin: 0;
     padding: 0;
@@ -548,7 +556,7 @@ button.Button.messages-tab.Button--plain:focus {
 }
 
 #recommendCardDialags .segmented-control__item {
-    width: 33.3%;
+    width: 33%;
 }
 
 .citic, .bankcomm{
@@ -560,6 +568,7 @@ button.Button.messages-tab.Button--plain:focus {
     max-width: 310px;
     padding: 8px;
     position: relative;
+    margin: 0 auto;
 }
 .bankcard h4{
     color: #333;

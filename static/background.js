@@ -158,6 +158,17 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
   }, { urls: ["*://*.jd.com/*"] }, ['blocking', 'requestHeaders']);
 
 
+// 阻止打开京东金融App的代码
+chrome.webRequest.onBeforeRequest.addListener(
+  function (details) {
+    if (details.url == "https://m.jr.jd.com/statics/downloadApp/newdl/newdl.js")
+      return {
+        cancel: details.url.indexOf("://m.jr.jd.com/") != -1
+      };
+  }, {
+    urls: ["*://m.jr.jd.com/*"]
+  }, ["blocking"]);
+
 chrome.alarms.onAlarm.addListener(function( alarm ) {
   switch(true){
     // 定时检查任务

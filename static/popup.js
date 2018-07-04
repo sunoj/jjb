@@ -21,6 +21,7 @@ $( document ).ready(function() {
   var disabled_link = localStorage.getItem('disabled_link');
   var unreadCount = localStorage.getItem('unreadCount') || 0
   var changelog_version = localStorage.getItem('changelog_version')
+  var displayRecommend = localStorage.getItem('displayRecommend')
   var current_version = "{{version}}"
 
   if (unreadCount > 0) {
@@ -28,6 +29,14 @@ $( document ).ready(function() {
   }
 
   $("#renderFrame").attr('src', '/render.html')
+
+
+  // 查询推荐设置
+  $.getJSON("https://jjb.zaoshu.so/recommend/settings", function (json) {
+    if (json.display) {
+      localStorage.setItem('displayRecommend', json.display)
+    }
+  });
   
   if (login && login == 'Y') {
     let time = Date.now().toString()
@@ -43,7 +52,8 @@ $( document ).ready(function() {
       }
     }
 
-    if (time[time.length - 1] > 6) {
+    // 只有在没有弹框 且 打开了推荐 取 1/5 的几率弹出推荐
+    if (!dialog && displayRecommend == 'true' && time[time.length - 1] > 7) {
       showJEvent()
       dialog = true
     }
@@ -126,16 +136,14 @@ $( document ).ready(function() {
     }
   }
 
-  if (!browser) {
-    // tippy
-    setTimeout(function () {
-      tippy('.tippy', {
-        animation: 'scale',
-        duration: 20,
-        arrow: true
-      })
-    }, 800)
-  }
+  // tippy
+  setTimeout(function () {
+    tippy('.tippy', {
+      animation: 'scale',
+      duration: 20,
+      arrow: true
+    })
+  }, 800)
 
 
   $('.settings .weui-navbar__item').on('click', function () {
@@ -251,8 +259,10 @@ $( document ).ready(function() {
     }
   })
 
-  $(".weui-dialog input[name='cardbank']").change(function () {
-    var bank = $(this).val()
+  $("#recommendCardDialags .weui-dialog .switch-cardbank").click(function () {
+    var bank = $(this).data('bank')
+    $('#recommendCardDialags .segmented-control__item').removeClass('checked')
+    $(this).parent().addClass('checked')
     $('.card-box').each(function () {
       if ($(this).hasClass(bank)){
         $(this).show()
@@ -508,7 +518,7 @@ $( document ).ready(function() {
     listenVoice($(this).data('type'), $(this).data('batch'))
   })
 
-  // 体验通知
+  // 试听通知
   function listenVoice(type, batch) {
     chrome.runtime.sendMessage({
       text: type,
