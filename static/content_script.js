@@ -867,7 +867,7 @@ function CheckDom() {
     // 切换到支付返现视图
     $("#react-root .react-root .react-view .react-view .react-view .react-view .react-view .react-view .react-view .react-view span").each(function () {
       let targetEle = $(this)
-      if (targetEle.text() == '支付返现') {
+      if (targetEle.text() == '支付返现' || targetEle.text() == '收益加速' ) {
         mockClick(targetEle[0])
         setTimeout(() => {
           getPlatinumRebate()
