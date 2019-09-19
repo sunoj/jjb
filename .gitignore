@@ -2,3 +2,5 @@ node_modules
 yarn-error.log
 .vscode
 build
+dist
+.cache
