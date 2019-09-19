@@ -317,6 +317,190 @@ const tasks = [
       daily: 3,
       hour: 2
     }
+  },
+  {
+    id: '23',
+    src: {
+      m: 'https://pro.m.jd.com/mall/active/2C4Az1JUCWN8f3Y6xaxHbzTLkUzC/index.html',
+    },
+    title: '领取智能生活京豆',
+    description: "领取智能生活页面签到京豆",
+    mode: 'iframe',
+    type: ['m'],
+    checkin: true,
+    frequencyOption: ['daily', 'never'],
+    frequency: 'daily',
+    location: {
+      host: ['pro.m.jd.com'],
+      pathname: ['/mall/active/2C4Az1JUCWN8f3Y6xaxHbzTLkUzC/index.html']
+    },
+    new: true,
+    rateLimit:{
+      weekly: 14,
+      daily: 3,
+      hour: 2
+    }
+  },
+  {
+    id: '24',
+    src: {
+      m: 'https://pro.m.jd.com/mall/active/bVs9EG4MMK4zKdqVt86UFABX2en/index.html',
+    },
+    title: '领取母婴好货京豆',
+    description: "领取母婴好货页面签到京豆",
+    mode: 'iframe',
+    type: ['m'],
+    checkin: true,
+    frequencyOption: ['daily', 'never'],
+    frequency: 'daily',
+    location: {
+      host: ['pro.m.jd.com'],
+      pathname: ['/mall/active/bVs9EG4MMK4zKdqVt86UFABX2en/index.html']
+    },
+    new: true,
+    rateLimit:{
+      weekly: 14,
+      daily: 3,
+      hour: 2
+    }
+  },
+  {
+    id: '25',
+    src: {
+      m: 'https://pro.m.jd.com/mall/active/NJ1kd1PJWhwvhtim73VPsD1HwY3/index.html',
+    },
+    title: '领取京东个护京豆',
+    description: "领取京东个护页面签到京豆",
+    mode: 'iframe',
+    type: ['m'],
+    checkin: true,
+    frequencyOption: ['daily', 'never'],
+    frequency: 'daily',
+    location: {
+      host: ['pro.m.jd.com'],
+      pathname: ['/mall/active/NJ1kd1PJWhwvhtim73VPsD1HwY3/index.html']
+    },
+    new: true,
+    rateLimit:{
+      weekly: 14,
+      daily: 3,
+      hour: 2
+    }
+  },
+  {
+    id: '26',
+    src: {
+      m: 'https://pro.m.jd.com/mall/active/2Tjm6ay1ZbZ3v7UbriTj6kHy9dn6/index.html',
+    },
+    title: '领取京东清洁京豆',
+    description: "领取京东清洁页面签到京豆",
+    mode: 'iframe',
+    type: ['m'],
+    checkin: true,
+    frequencyOption: ['daily', 'never'],
+    frequency: 'daily',
+    location: {
+      host: ['pro.m.jd.com'],
+      pathname: ['/mall/active/2Tjm6ay1ZbZ3v7UbriTj6kHy9dn6/index.html']
+    },
+    new: true,
+    rateLimit:{
+      weekly: 14,
+      daily: 3,
+      hour: 2
+    }
+  },
+  {
+    id: '27',
+    src: {
+      m: 'https://pro.m.jd.com/mall/active/3SC6rw5iBg66qrXPGmZMqFDwcyXi/index.html',
+    },
+    title: '领取京东图书京豆',
+    description: "领取京东图书页面签到京豆",
+    mode: 'iframe',
+    type: ['m'],
+    checkin: true,
+    frequencyOption: ['daily', 'never'],
+    frequency: 'daily',
+    location: {
+      host: ['pro.m.jd.com'],
+      pathname: ['/mall/active/3SC6rw5iBg66qrXPGmZMqFDwcyXi/index.html']
+    },
+    new: true,
+    rateLimit:{
+      weekly: 14,
+      daily: 3,
+      hour: 2
+    }
+  },
+  {
+    id: '28',
+    src: {
+      m: 'https://pro.m.jd.com/mall/active/aNCM6yrzD6qp1Vvh5YTzeJtk7cM/index.html',
+    },
+    title: '领取京东超市京豆',
+    description: "领取京东超市页面签到京豆",
+    mode: 'iframe',
+    type: ['m'],
+    checkin: true,
+    frequencyOption: ['daily', 'never'],
+    frequency: 'daily',
+    location: {
+      host: ['pro.m.jd.com'],
+      pathname: ['/mall/active/aNCM6yrzD6qp1Vvh5YTzeJtk7cM/index.html']
+    },
+    new: true,
+    rateLimit:{
+      weekly: 14,
+      daily: 3,
+      hour: 2
+    }
+  },
+  {
+    id: '29',
+    src: {
+      m: 'https://red-e.jd.com/resources/pineapple/index.html',
+    },
+    title: '领取每日镚一镚',
+    description: "领取每日镚一镚",
+    mode: 'iframe',
+    type: ['m'],
+    checkin: true,
+    frequencyOption: ['daily', 'never'],
+    frequency: 'daily',
+    location: {
+      host: ['red-e.jd.com'],
+      pathname: ['/resources/pineapple/index.html']
+    },
+    new: true,
+    rateLimit:{
+      weekly: 14,
+      daily: 3,
+      hour: 2
+    },
+  },
+  {
+    id: '30',
+    src: {
+      m: 'https://vip.jd.com/newPage/reward',
+    },
+    title: '领取摇一摇',
+    description: "领取摇一摇",
+    mode: 'iframe',
+    type: ['m'],
+    checkin: true,
+    frequencyOption: ['daily', 'never'],
+    frequency: 'daily',
+    location: {
+      host: ['vip.jd.com'],
+      pathname: ['/newPage/reward']
+    },
+    new: true,
+    rateLimit:{
+      weekly: 14,
+      daily: 30,
+      hour: 20
+    },
   }
 ]
 

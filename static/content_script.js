@@ -1752,6 +1752,115 @@ function getGoldCoin(task) {
   }
 }
 
+// 通用签到页面
+function genericCheckIn(task) {
+  if (task && task.frequency != 'never') {
+    let time = 0;
+    console.log('开始签到特定类别页面')
+    $(".signIn_btnTxt").each(function () {
+      let that = $(this)
+      if (that.text() == '签到') {
+        setTimeout(function () {
+          simulateClick($(that))
+          let uuid = Date.now()
+          observeDOM(document.body, function (observer) {
+            let resultElement = $(".signIn_pop .signIn_Title")
+            if (resultElement && resultElement.text().indexOf('签到成功') > -1) {
+              if (observer) observer.disconnect();
+              let value = $(".signIn_pop .signIn_bean").text()
+              return chrome.runtime.sendMessage({
+                task: task,
+                action: "checkin_notice",
+                title: "京价保自动为您领取京豆",
+                value: value,
+                reward: "bean",
+                content: `恭喜您领到了${value}`,
+                uuid: uuid
+              }, function (response) {
+                console.log("Response: ", response);
+              });
+            }
+          })
+        }, time)
+        time += 5000;
+      }
+    })
+  }
+}
+
+function pineappleCheckIn(task) {
+  if (task && task.frequency != 'never') {
+    let time = 0;
+    console.log('开始签到每日镚一镚')
+    $(".get_btn_title").each(function () {
+      let that = $(this)
+      if (that.text() == '领钢镚') {
+        setTimeout(function () {
+          simulateClick($(that))
+          let uuid = Date.now()
+          observeDOM(document.body, function (observer) {
+            let resultElement = $(".reward_title")
+            if (resultElement && resultElement.text().indexOf('领取成功') > -1) {
+              if (observer) observer.disconnect();
+              let value = $(".reward_hasnum>span").text()
+              if (value !== '') {
+                return chrome.runtime.sendMessage({
+                  task: task,
+                  action: "checkin_notice",
+                  title: "京价保自动为您领取钢镚",
+                  value: value,
+                  reward: "coin",
+                  content: `恭喜您领到了${value}个钢蹦`,
+                  uuid: uuid
+                }, function (response) {
+                  console.log("Response: ", response);
+                });
+              }
+            }
+          })
+        }, time)
+        time += 5000;
+      }
+    })
+  }
+}
+
+function swingCheckIn(task) {
+  if (task && task.frequency != 'never') {
+    let time = 0;
+    console.log('开始摇一摇')
+    $(".rewardBoxBot").each(function () {
+      let that = $(this)
+      if (that.text() == '摇一摇 有惊喜') {
+        setTimeout(function () {
+          simulateClick($(that))
+          let uuid = Date.now()
+          observeDOM(document.body, function (observer) {
+            let resultElement = $(".rewardPopT")
+            if (resultElement && resultElement.text().indexOf('小盒子送你') > -1) {
+              if (observer) observer.disconnect();
+              let value = $(".rewardPopT>em").text()
+              if (value !== '') {
+                return chrome.runtime.sendMessage({
+                  task: task,
+                  action: "checkin_notice",
+                  title: "京价保自动为您领取京豆",
+                  value: value,
+                  reward: "bean",
+                  content: `恭喜您领到了${value}个京豆`,
+                  uuid: uuid
+                }, function (response) {
+                  console.log("Response: ", response);
+                });
+              }
+            }
+          })
+        }, time)
+        time += 5000;
+      }
+    })
+  }
+}
 
 // ************
 // 主体任务
@@ -1925,6 +2034,62 @@ function CheckDom() {
       getSetting('job6_frequency', gangbeng)
     }, 500);
   };
+
+  // 23 智能生活
+  if (window.location.host == 'pro.m.jd.com' && window.location.pathname == '/mall/active/KcfFqWvhb5hHtaQkS4SD1UU6RcQ/index.html') {
+    setTimeout(() => {
+      getSetting('job23_frequency', genericCheckIn)
+    }, 1500);
+  }
+
+  // 24 母婴好货
+  if (window.location.host == 'pro.m.jd.com' && window.location.pathname == '/mall/active/bVs9EG4MMK4zKdqVt86UFABX2en/index.html') {
+    setTimeout(() => {
+      getSetting('job24_frequency', genericCheckIn)
+    }, 1500);
+  }
+
+  // 25 京东个护
+  if (window.location.host == 'pro.m.jd.com' && window.location.pathname == '/mall/active/NJ1kd1PJWhwvhtim73VPsD1HwY3/index.html') {
+    setTimeout(() => {
+      getSetting('job25_frequency', genericCheckIn)
+    }, 1500);
+  }
+
+  // 26 京东清洁
+  if (window.location.host == 'pro.m.jd.com' && window.location.pathname == '/mall/active/2Tjm6ay1ZbZ3v7UbriTj6kHy9dn6/index.html') {
+    setTimeout(() => {
+      getSetting('job26_frequency', genericCheckIn)
+    }, 1500);
+  }
+
+  // 27 京东图书
+  if (window.location.host == 'pro.m.jd.com' && window.location.pathname == '/mall/active/3SC6rw5iBg66qrXPGmZMqFDwcyXi/index.html') {
+    setTimeout(() => {
+      getSetting('job27_frequency', genericCheckIn)
+    }, 1500);
+  }
+
+  // 28 京东超市
+  if (window.location.host == 'pro.m.jd.com' && window.location.pathname == '/mall/active/aNCM6yrzD6qp1Vvh5YTzeJtk7cM/index.html') {
+    setTimeout(() => {
+      getSetting('job28_frequency', genericCheckIn)
+    }, 1500);
+  }
+
+  // 29 每日镚一镚
+  if (window.location.host == 'red-e.jd.com' && window.location.pathname == '/resources/pineapple/index.html') {
+    setTimeout(() => {
+      getSetting('job29_frequency', pineappleCheckIn)
+    }, 1500);
+  }
+
+  // 30 摇一摇
+  if (window.location.host == 'vip.jd.com' && window.location.pathname == '/newPage/reward') {
+    setTimeout(() => {
+      getSetting('job30_frequency', swingCheckIn)
+    }, 1500);
+  }
 
   // 钢镚签到 (14:钢镚签到)
   if (window.location.origin == "https://coin.jd.com" && window.location.pathname == "/m/gb/index.html") {
