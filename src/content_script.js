@@ -664,7 +664,7 @@ function priceCutNotice(task) {
     let time = 0;
     weui.toast('京价保运行中', 1000);
     runStatus(task)
-    $(".cart-item-list .item-item").each(function () {
+    $(".item-list .item-item").each(function () {
       let item = $(this)
       if (item.find('.pro-tiny-tip').text().indexOf("降价") > -1) {
         let priceCut = item.find('.pro-tiny-tip').text().trim()

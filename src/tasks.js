@@ -46,7 +46,6 @@ const tasks = [
       hour: 2
     }
   },
-  
   {
     id: '15',
     src: {
@@ -132,6 +131,7 @@ const tasks = [
     location: {
       host: ['a.jd.com']
     },
+    deprecated: true,
     selector: {
       target: ".coupon-item:last",
       result: ".mask .content",
@@ -281,6 +281,7 @@ const tasks = [
     },
     deprecated: true
   },
+  // 已经失效
   {
     id: '11',
     src: {
@@ -297,7 +298,8 @@ const tasks = [
       weekly: 32,
       daily: 4,
       hour: 2
-    }
+    },
+    deprecated: true
   },
   {
     id: '12', // 已经失效
