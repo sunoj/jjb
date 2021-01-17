@@ -137,6 +137,9 @@
                   <div class="weui-cell promotion" v-if="order.promotionInfo">
                     <div class="weui-cell__bd">
                       <div class="good_title">
+                        <a
+                        :href="`${order.link}`"
+                        target="_blank">
                         <img
                           v-if="order.img"
                           :src="`https:${order.img}`"
@@ -144,6 +147,7 @@
                           class="promotion_title backup_picture"
                           :alt="order.title"
                         />
+                        </a>
                         <a :href="`${order.link}`" target="_blank">{{
                           order.title
                         }}</a>

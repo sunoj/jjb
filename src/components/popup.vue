@@ -7,6 +7,7 @@
           <slide class="slide" v-for="(event, index) in events" :key="event.id" :index="index">
             <a :href="`${event.link}`" target="_blank">
               <img :src="event.poster" :title="event.title" width="300"/>
+              <p  v-if="event.description" class="popup-title">{{event.description}}</p>
             </a>
           </slide>
           <hooper-navigation slot="hooper-addons"></hooper-navigation>
@@ -126,5 +127,8 @@ export default {
   font-weight: 100;
   margin-top: -20px;
   cursor: pointer;
+}
+.popup-title{
+  color: #dadada;
 }
 </style>

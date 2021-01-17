@@ -179,19 +179,6 @@
           <div class="notice_settings settings_box" v-show="activeTab == 'notice_settings'">
             <div class="weui-cells weui-cells_form">
               <div class="weui-cell weui-cell_switch">
-                <div class="weui-cell__bd">不再提示签到通知</div>
-                <div class="weui-cell__ft">
-                  <input
-                    class="weui-switch"
-                    v-model="settings['mute_checkin']"
-                    type="checkbox"
-                    true-value="checked"
-                    false-value="false"
-                    @change="onSettingChange('mute_checkin', $event)"
-                  >
-                </div>
-              </div>
-              <div class="weui-cell weui-cell_switch">
                 <div class="weui-cell__bd">不再提示领券通知</div>
                 <div class="weui-cell__ft">
                   <input
@@ -205,7 +192,12 @@
                 </div>
               </div>
               <div class="weui-cell weui-cell_switch">
-                <div class="weui-cell__bd">隐藏价保商品信息</div>
+                <div class="weui-cell__bd"><span
+                    data-tippy-placement="top-start"
+                    class="tippy"
+                    data-tippy-content="不在价保的浏览器通知消息中包含商品名称等信息"
+                  >隐藏价保商品信息</span>
+                </div>
                 <div class="weui-cell__ft">
                   <input
                     class="weui-switch"

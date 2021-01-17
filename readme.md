@@ -1,6 +1,6 @@
 # 京价保 - 自动申请京东价格保护
 
-京价保是一个帮你监控商品价格变化自动申请京东价格保护的 Chrome 拓展。
+京价保是一个帮你监控商品价格变化自动申请京东价格保护的浏览器拓展。
 
 ## 🎌 重要更新预告
 
@@ -25,19 +25,18 @@
   web store' width='496' height='150' src='https://jjbcdn.zaoshu.so/web/cws_badge_496x150.png' />
 </a>
 
+另外也非常推荐使用 Microsoft Edge 浏览器：
+
+<a href="https://microsoftedge.microsoft.com/addons/detail/ljdjkkjiognkghfjndoddoplekppngge" target="_black">
+  <img alt="安装 Edge 版" class="edge" src="https://edgetipscdn.microsoft.com/insider-site/images/favicon.fbd89822.png" width="32px">
+</a>
+
 同时提供
 
 Firefox 版本：
 
 <a href="https://addons.mozilla.org/zh-CN/firefox/addon/jjb/" target="_black">
   <img alt="安装 Firefox 版" class="firefox" src="https://d33wubrfki0l68.cloudfront.net/4ce5ce101cdaa4030248fab2934960ad1cc6960e/3f95c/firefox-quantum.png" width="32px">
-</a>
-
-
-Microsoft Edge 版本：
-
-<a href="https://microsoftedge.microsoft.com/addons/detail/ljdjkkjiognkghfjndoddoplekppngge" target="_black">
-  <img alt="安装 Edge 版" class="edge" src="https://edgetipscdn.microsoft.com/insider-site/images/favicon.fbd89822.png" width="32px">
 </a>
 
 或者直接下载的 CRX文件手动安装（非常不建议）
@@ -50,8 +49,8 @@ Microsoft Edge 版本：
 
 ## ✨ 主要功能
 
-* 自动监控最近订单商品的价格变化，在商品降价时自动申请价格保护
-* 自动签到领取京豆
+* 监控最近订单商品的价格变化，在商品降价时自动申请价格保护
+* 监控购物车降价
 * 自动领全品类
 * 商品价格走势图
 
@@ -59,23 +58,13 @@ Microsoft Edge 版本：
 
 ![主界面](https://i.loli.net/2020/10/28/T4G67vEhPYnm2dI.png)
 
-
-## 🚨 重要提示
-
-1. 京价保并非开源软件，不许可您以任何形式进行再发行，请仔细阅读[#协议和授权](https://github.com/sunoj/jjb#%E5%8D%8F%E8%AE%AE%E5%92%8C%E6%8E%88%E6%9D%83)。
-
-2. 当前仓库是插件源代码，无法直接安装，如需安装请自行参考 [#如何开发](https://github.com/sunoj/jjb#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91) 编译。
-
-3. 京价保绝对不会在任何情况下强行劫持任何网页的访问，如果发现类似问题请善用 Google 搜索并使用二分法停用插件排除，同时考虑运营商劫持的可能性。详情参考：[#安全提示](https://github.com/sunoj/jjb#%E5%AE%89%E5%85%A8%E6%8F%90%E7%A4%BA)
-
-
 ## 🔨 如何开发
 
 * 安装依赖
 > yarn
 
 * 开始开发
-> VERSION=2.1.1 BROWSER=chrome yarn build
+> BUILDID=149 VERSION=2.9.4 BROWSER=chrome yarn build
 
 `主要作用就是合并压缩代码，质疑代码和市场版本不一致，请先自行打包一下再对比`
 
@@ -101,8 +90,6 @@ Microsoft Edge 版本：
 京价保不会在任何情况下强行劫持访问、插入恶意代码、上传隐私信息或利用你的电脑挖矿。
 
 若你发现任何类似问题，请首先确保你使用的是商店版本，不建议在任何情况下使用第三方提供的安装包。
-
-京价保目前有约五万人正在使用，其中至少有数千名开发者，京价保的代码有数千人关注，若怀疑京价保代码有问题，不妨直接审查代码。
 
 如果你确实发现京东页面（或者还有其他电商和非电商网站）被劫持，请考虑运营商劫持的可能性，并筛查拓展列表。
 
@@ -133,8 +120,6 @@ Microsoft Edge 版本：
 
 京价保现在还有一个官方博客： https://blog.jjb.im
 
-或者也可以关注京价保的知乎专栏：https://zhuanlan.zhihu.com/jjblog
-
 ## ⚖️ 协议和授权
 
 京价保并非一个开源软件，作者保留全部的权利。
@@ -161,16 +146,6 @@ Microsoft Edge 版本：
 任何反馈问题的 issue 均需按照模板格式填写，否则将被直接关闭。
 
 如果有开发能力，建议在本地调试出出错的代码。
-
-不接受功能请求的 issue，功能请求可能会被直接关闭，请谅解（正确的方式是打赏并附言）。
-
-若有功能建议或其他非技术反馈，请使用应用内反馈。由于京价保不设客服人员，反馈将默认不回复。
-
-## ✉️ 联系作者
-
-请发邮件至：`ming@tiny.group`
-
-请勿发送功能咨询邮件，将不会收到回复。相关功能细节请自行了解。
 
 ## 🔗 衍生项目
 
