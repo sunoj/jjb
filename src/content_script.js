@@ -37,13 +37,6 @@ function injectScriptCode(code, node) {
   th.appendChild(script);
 }
 
-injectScriptCode(`
-  if (typeof hrl != 'undefined' && typeof host != 'undefined') {
-    document.write('<a style="display:none" href="' + hrl + '" id="exe"></a>');
-    document.getElementById('exe').click()
-  }
-`, 'body')
-
 function mockClick(element) {
   var dispatchMouseEvent = function (target, var_args) {
     var e = document.createEvent("MouseEvents");

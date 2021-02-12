@@ -367,13 +367,9 @@ function openWebPageAsMobile(url) {
 }
 
 function openLoginPage(loginState) {
-  if (loginState.m.state != 'alive') {
-    openWebPageAsMobile(mLoginUrl)
-  } else {
-    chrome.tabs.create({
-      url: "https://home.jd.com"
-    })
-  }
+  chrome.tabs.create({
+    url: "https://home.jd.com"
+  })
 }
 
 // 点击通知

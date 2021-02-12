@@ -839,13 +839,8 @@ export default {
 
       this.loginState["pc"].description =
         "当前登录状态" + getStateDescription(loginState, "pc");
-      this.loginState["m"].description =
-        "当前登录状态" + getStateDescription(loginState, "m");
-      this.loginState.description =
-        "PC网页版登录" +
-        getStateDescription(loginState, "pc") +
-        "，移动网页版登录" +
-        getStateDescription(loginState, "m");
+
+      this.loginState.description = getStateDescription(loginState, "pc")
 
       // 如果登录失败，那么显示提示
       if (loginState.class == "failed") {

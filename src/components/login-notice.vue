@@ -27,7 +27,7 @@
                   </div>
                   <div class="weui-cell__bd">
                     <p>PC 网页</p>
-                    <p style="font-size: 13px;color: #888888;">部分任务如金融会员签到、浏览店铺签到使用</p>
+                    <p style="font-size: 13px;color: #888888;">同步可价保的订单列表</p>
                   </div>
                   <div class="weui-cell__ft login-status" style="font-size: 0">
                     <span
@@ -38,32 +38,7 @@
                   </div>
                 </div>
               </a>
-              <a
-                v-tippy
-                :class="`${state['m'].state} login-type_m`"
-                :title="state['m'].description"
-                @click="openMobilePage('https://home.m.jd.com/myJd/newhome.action')"
-              >
-                <div class="weui-cell">
-                  <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
-                    <img src="../../static/image/m.png" style="width: 30px;display: block">
-                  </div>
-                  <div class="weui-cell__bd">
-                    <p>移动网页</p>
-                    <p style="font-size: 13px;color: #888888;">绝大部分签到任务使用</p>
-                  </div>
-                  <div class="weui-cell__ft login-status" style="font-size: 0">
-                    <span
-                      style="vertical-align:middle; font-size: 17px;"
-                      class="status-text"
-                    >{{stateText[state['m'].state]}}</span>
-                    <span
-                      class="weui-badge weui-badge_dot status-icon"
-                      style="margin-left: 5px;margin-right: 5px;"
-                    ></span>
-                  </div>
-                </div>
-              </a>
+
             </div>
           </div>
           <p id="know_more" @click="showDetail = !showDetail">了解更多关于京价保如何使用账号</p>
