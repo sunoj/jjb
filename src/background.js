@@ -684,6 +684,29 @@ function loadRecommendSettingsToLocalStorage() {
   });
 }
 
+// 查询价格历史
+function getPriceChart(sku, days = 30, sender) {
+  fetch(`https://api.zaoshu.so/price/${sku}/detail?days=${days}`, {
+    mode: 'cors',
+    method: 'GET'
+  })
+  .then(function(response) {
+    return response.json();
+  }).then(function (data) {
+    console.log("getPriceChart", data, sender.tab)
+    chrome.tabs.sendMessage(sender.tab.id, {
+      type: "priceChart",
+      data: data
+    })
+  }).catch((error) => {
+    console.error("getPriceChart", error)
+    chrome.tabs.sendMessage(sender.tab.id, {
+      type: "priceChart",
+      error: error
+    })
+  })
+}
+
 // 处理消息通知
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
   if (!msg.action) {
@@ -1032,6 +1055,12 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
     case 'getOrders':
       setTimeout(async () => {
         await updateOrders()
+      }, 50);
+      break;
+    // 查询价格历史
+    case 'getPriceChart':
+      setTimeout(async () => {
+        await getPriceChart(msg.sku, msg.days, sender)
       }, 50);
       break;
     // 查询消息列表

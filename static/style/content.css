@@ -176,15 +176,6 @@ dialog .close {
     border-bottom: 1px solid #eee;
 }
 
-.g2-tooltip{
-    position: absolute;
-    background: #ffffffe0;
-    border: 1px solid #dededec2;
-    padding: 1em 2em;
-    min-width: 180px;
-    transition: all 0.4s ease-out;
-}
-
 .g2-tooltip .promotions li{
     font-size: 12px;
     margin-bottom: 0.5em;

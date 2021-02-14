@@ -66,108 +66,128 @@ function showPromotions(n) {
   }
 }
 
-function getPriceChart(sku, days) {
-  $.ajax({
-    method: "GET",
-    type: "GET",
-    url: `https://api.zaoshu.so/price/${sku}/detail?days=${days}`,
-    timeout: 5000,
-    success: function (data) {
-      if (data.chart.length > 2) {
-        $("#jjbPriceChart").html('')
-        let specialPromotion = data.specialPromotion
-        let chart = new Chart({
-          container: 'jjbPriceChart',
-          autoFit: true,
-          padding: [50, 50, 80, 50],
-          height: 300
-        });
-        chart.data(data.chart)
-        chart.scale({
-          timestamp: {
-            type: 'time',
-            mask: 'MM-DD HH:mm',
-            range: [0, 1],
-            tickCount: 5
-          }
-        });
-        chart.scale('value', {
-          min: data.averagePrice ? (data.averagePrice / 3) : 0,
-          nice: true,
-        });
-        chart.line().position('timestamp*value').shape('hv').color('key').tooltip({ fields: [ 'key', 'value', 'timestamp' ], callback: (key, value, timestamp) => {
-          const itemDate = timestampToDateNumber(timestamp)
-          return {
-            key,
-            value: value,
-            date: itemDate,
-          };
-        }});
-        chart.tooltip(
-          {
-            showCrosshairs: true, // 展示 Tooltip 辅助线
-            shared: true,
-            showTitle: true,
-            customContent: (title, items) => {
-              let itemDom = ""
-              let promotionsDom = ""
-              let promotions = []
 
-              items.forEach(item => {
-                promotions = data.promotionLogs.find(function (promotion) {
-                  return promotion.date == item.date;
-                });
-                itemDom += `<li style="color:${item.color}"><span class="price-type">${item.key}</span>: ${item.value} 元</li>`
-              });
-              promotions && promotions.detail && promotions.detail.forEach(item => {
-                promotionsDom += `<li><span class="tag">${item.typeName}</span><span class="description">${item.description}</span></li>`
-              });
-              return `<div class="g2-tooltip">
-                <div class="g2-tooltip-title" style="margin-bottom: 4px;">${title}</div>
-                <ul class="g2-tooltip-list">${itemDom}</ul>
-                <ul class="promotions">${promotionsDom}</ul>
-              </div>`
-            }
-          }
-        );
+function dealWithPriceDate(data) {
+  if (data.chart.length > 2) {
+    $("#jjbPriceChart").html('')
+    console.log("dealWithPriceDate",$("#jjbPriceChart"))
+    let specialPromotion = data.specialPromotion
+    let chart = new Chart({
+      container: 'jjbPriceChart',
+      autoFit: true,
+      renderer: 'svg',
+      padding: [50, 50, 80, 50],
+      height: 300
+    });
+    chart.data(data.chart)
+    chart.scale('timestamp', {
+      type: 'time',
+      mask: 'MM-DD HH:mm',
+      range: [0, 1],
+      tickCount: 5
+    });
+    chart.scale('value', {
+      min: data.averagePrice ? (data.averagePrice / 3) : 0,
+      nice: true,
+    });
+    chart.line().position('timestamp*value').shape('hv').color('key').tooltip({ fields: [ 'key', 'value', 'timestamp' ], callback: (key, value, timestamp) => {
+      const itemDate = timestampToDateNumber(timestamp)
+      return {
+        key,
+        value: value,
+        date: itemDate,
+      };
+    }});
+    chart.tooltip(
+      {
+        showCrosshairs: true, // 展示 Tooltip 辅助线
+        shared: true,
+        showTitle: true,
+        customContent: (title, items) => {
+          let itemDom = ""
+          let promotionsDom = ""
+          let promotions = []
 
-        let specialPromotionDom = ``
-        specialPromotion && specialPromotion.forEach(item => {
-          specialPromotionDom += `<div class="special-promotion-item"><a class="promotion-item" style="${item.style}" href="${item.url}" target="_break">${item.icon ? `<span class="icon"><img src="${item.icon}"/></span>` : ''}${item.title}</a></div>`
-        });
-        let specialPromotionControllerDom = ``
-        specialPromotion &&specialPromotion.forEach((item, index) => {
-          specialPromotionControllerDom += `<span class="item__child" data-index="${index}"></span>`
-        });
-        $("#specialPromotion").html(`
-          <div class="promotions">${specialPromotionDom}</div>
-          <div class="controller">${specialPromotionControllerDom}</div>
-        `)
-        chart.render();
-        setTimeout(() => {
-          showPromotions(Math.floor(Math.random()*specialPromotion.length) + 1);
-          $( "#specialPromotion .controller .item__child" ).on( "click", function() {
-            let index = $(this).data('index');
-            console.log('index', index)
-            showPromotions(index+1)
+          items.forEach(item => {
+            promotions = data.promotionLogs.find(function (promotion) {
+              return promotion.date == item.date;
+            });
+            itemDom += `<li style="color:${item.color}"><span class="price-type">${item.key}</span>: ${item.value} 元</li>`
           });
-        }, 50);
-
-        setInterval(() => {
-          showPromotions(Math.floor(Math.random()*specialPromotion.length) + 1);
-        }, 30000);
-      } else {
-        $("#jjbPriceChart").html(`<div class="no_data">暂无数据</div>`)
+          promotions && promotions.detail && promotions.detail.forEach(item => {
+            promotionsDom += `<li><span class="tag">${item.typeName}</span><span class="description">${item.description}</span></li>`
+          });
+          return `
+            <div class="g2-tooltip-title" style="margin-bottom: 4px;">${title}</div>
+            <ul class="g2-tooltip-list">${itemDom}</ul>
+            <ul class="promotions">${promotionsDom}</ul>
+          `
+        }
       }
-    },
-    error: function (xhr, type) {
-      $("#jjbPriceChart").html(`<div id="retry" class="no_data">查询失败，点击重试</div>`)
-      $('#retry').on('click', () => {
-        getPriceChart(sku)
-      })
-    }
+    );
+
+    let specialPromotionDom = ``
+    specialPromotion && specialPromotion.forEach(item => {
+      specialPromotionDom += `<div class="special-promotion-item"><a class="promotion-item" style="${item.style}" href="${item.url}" target="_break">${item.icon ? `<span class="icon"><img src="${item.icon}"/></span>` : ''}${item.title}</a></div>`
+    });
+    let specialPromotionControllerDom = ``
+    specialPromotion &&specialPromotion.forEach((item, index) => {
+      specialPromotionControllerDom += `<span class="item__child" data-index="${index}"></span>`
+    });
+    $("#specialPromotion").html(`
+      <div class="promotions">${specialPromotionDom}</div>
+      <div class="controller">${specialPromotionControllerDom}</div>
+    `)
+    chart.render();
+    setTimeout(() => {
+      showPromotions(Math.floor(Math.random()*specialPromotion.length) + 1);
+      $( "#specialPromotion .controller .item__child" ).on( "click", function() {
+        let index = $(this).data('index');
+        console.log('index', index)
+        showPromotions(index+1)
+      });
+    }, 50);
+
+    setInterval(() => {
+      showPromotions(Math.floor(Math.random()*specialPromotion.length) + 1);
+    }, 30000);
+  } else {
+    $("#jjbPriceChart").html(`<div class="no_data">暂无数据</div>`)
+  }
+}
+
+
+function getPriceChart(sku, days = 30) {
+  console.log("getPriceChart", sku, days)
+  chrome.runtime.sendMessage({
+    action: "getPriceChart",
+    sku: sku,
+    days: days
   });
 }
+
+function showError(sku, error) {
+  console.error(error);
+  $("#jjbPriceChart").html(`<div id="retry" class="no_data">查询失败，点击重试</div>`);
+  $('#retry').on('click', () => {
+    getPriceChart(sku)
+  })
+}
+
+// 应用消息
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+  console.log('onMessage', message)
+  switch (message.type) {
+    case 'priceChart':
+      if (message.error) {
+        return showError(sku, error)
+      }
+      dealWithPriceDate(message.data)
+      break;
+    default:
+      break;
+  }
+})
 
 getSetting('disable_pricechart', function (disable) {
   if (disable == "checked") {
@@ -181,6 +201,7 @@ getSetting('disable_pricechart', function (disable) {
       }
       let sku = urlInfo[2]
       getPriceChart(sku)
+
       $('#ChartDays').on('change', function () {
         getPriceChart(sku, $(this).val());
       });

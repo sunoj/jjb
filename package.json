@@ -9,7 +9,7 @@
     "dev": "webpack --watch"
   },
   "dependencies": {
-    "@antv/g2": "^4.0.12",
+    "@antv/g2": "^4.1.11",
     "@sunoj/touchemulator": "^0.0.2",
     "babel-plugin-transform-runtime": "^6.23.0",
     "dexie": "^2.0.4",
