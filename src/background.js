@@ -390,7 +390,9 @@ chrome.notifications.onClicked.addListener(function (notificationId) {
           })
           break;
         case 'jiabao':
-          openWebPageAsMobile(priceProUrl)
+          chrome.tabs.create({
+            url: "https://pcsitepp-fm.jd.com/"
+          })
           break;
         case 'login-failed':
           if (type == 'pc') {
@@ -854,7 +856,9 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
       openWebPageAsMobile(msg.url)
       break;
     case 'openPricePro':
-      openWebPageAsMobile(priceProUrl)
+      chrome.tabs.create({
+        url: "https://pcsitepp-fm.jd.com/"
+      })
       break;
     // 登录失败
     case 'loginFailed':

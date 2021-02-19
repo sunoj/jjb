@@ -10,7 +10,7 @@
           <span class="js-close" @click="step = 0">x</span>
           <div class="weui-dialog__bd">
             <p>感谢你使用京价保！以下是一些简单的介绍：</p>
-            <p>京价保是一个<a href="https://github.com/sunoj/jjb" target="_blank">公开源代码</a>的浏览器插件。它能自动监控已购商品的价格变化，在降价时自动申请价格保护。还内置一系列替你进行签到、领券、抽奖等小任务。</p>
+            <p>京价保是一个<a href="https://github.com/sunoj/jjb" target="_blank">公开源代码</a>的浏览器插件。它能自动监控已购商品的价格变化，在降价时自动申请价格保护。</p>
             <p>由于京东网页经常更新，京价保受其影响可能部分功能有时变得不可用，因此京价保会经常更新以保持功能正常。如果你使用的不是
               <a v-if="browser == 'chrome'" href="https://chrome.google.com/webstore/detail/gfgkebiommjpiaomalcbfefimhhanlfd" target="_blank">Chrome 拓展商店</a>
               <a v-if="browser == 'firefox'" href="https://addons.mozilla.org/zh-CN/firefox/addon/jjb/" target="_blank">Firefox 官方商店</a>
