@@ -41,6 +41,7 @@ body::-webkit-scrollbar{
     display: flex;
     justify-content: space-between;
     width: calc(100vw * var(--zoom-factor));
+    min-width: 400px;
 }
 
 .weui-cell_select {
@@ -1348,8 +1349,8 @@ button.Button.messages-tab.Button--plain:focus {
     padding: .2em .5em;
 }
 
-@media (max-width: 580px) {
-    .settings {
+@media screen and (max-width: 580px) {
+    .popup-window .settings {
         display: none;
     }
 }

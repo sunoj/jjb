@@ -145,6 +145,13 @@ $( document ).ready(function() {
 
 })
 
+chrome.windows.getCurrent(function (current) {
+  if (current.type == "popup") {
+    $(".main-app").addClass("popup-window")
+  }
+})
+
+
 // 防止缩放
 chrome.tabs.getZoomSettings(function (zoomSettings) {
   if (zoomSettings.defaultZoomFactor > 1 && zoomSettings.scope == 'per-origin' && zoomSettings.mode == 'automatic') {
