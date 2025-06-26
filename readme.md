@@ -28,13 +28,3 @@
 1) 插件核心功能 2) 目标用户 3) 期望上线时间  
 我会在 1–2 个工作日内回复并提供初步评估与报价。
 
-
-<h3>
-  <a href="https://github.com/sunoj/teaclub" target="_blank">茶友会</a>
-</h3>
-
-## 🥰 特别推荐
-
-<h3>
-  <a href="https://duoshao.net/?utm_source=jjb" target="_blank">多少记账 - 可协作的轻量级专业记账应用</a>
-</h3>
